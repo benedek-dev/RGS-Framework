@@ -55,13 +55,13 @@ RGS operates as a **three-layer system**:
 
 ## Technology Stack
 
-- **Engine**: [CHOOSE: Godot 4 / Unity / Unreal Engine 5]
-- **Language**: [CHOOSE: GDScript / C# / C++ / Blueprint]
+- **Engine**: Unreal Engine 5 (exclusive)
+- **Languages**: C++ and Blueprint
 - **Version Control**: Git with trunk-based development
-- **Build System**: [SPECIFY after choosing engine]
-- **Asset Pipeline**: [SPECIFY after choosing engine]
+- **Build System**: UnrealBuildTool (UBT)
+- **Asset Pipeline**: UE5 Content Browser + Derived Data Cache
 
-> Run `/setup-engine` to configure and pin all engine settings.
+> Run `/setup-engine` to pin your UE5 version and configure naming conventions.
 
 ---
 
@@ -96,8 +96,16 @@ RGS operates as a **three-layer system**:
 | `reviewer` | Quality review, security |
 | `tester` | Test writing and verification |
 
-### Tier 3 — Specialists
-See `.claude/docs/agent-roster.md` for the full 49-agent list with model assignments.
+### Tier 3 — UE5 Specialists
+| Agent | Subsystem | When to Use |
+|-------|-----------|-------------|
+| `unreal-specialist` | General UE5 | Blueprint vs C++, subsystems, project-wide UE optimization |
+| `ue-gas-specialist` | Gameplay Ability System | Abilities, effects, attribute sets, tags, prediction |
+| `ue-blueprint-specialist` | Blueprint Architecture | BP/C++ boundary, graph standards, BP optimization |
+| `ue-replication-specialist` | Networking/Replication | Property replication, RPCs, prediction, bandwidth |
+| `ue-umg-specialist` | UMG/CommonUI | Widget hierarchy, data binding, CommonUI input, UI perf |
+
+See `.claude/docs/agent-roster.md` for the full agent list with model assignments.
 
 ---
 
@@ -191,7 +199,7 @@ SendMessage({ to: "game-des", message: "[full task context]" })
 
 @.claude/docs/context-management.md
 
-## Agent Roster (full 49-agent list)
+## Agent Roster (full UE5 agent list)
 
 @.claude/docs/agent-roster.md
 

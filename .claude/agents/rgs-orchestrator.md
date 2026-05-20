@@ -46,10 +46,16 @@ You do not implement. You **route, coordinate, and synthesize**. When a task arr
 
 **QA/Ops:** `qa-tester`, `performance-analyst`, `devops-engineer`, `analytics-engineer`, `security-engineer`, `accessibility-specialist`, `live-ops-designer`, `community-manager`
 
-**Engine Specialists:**
-- Unreal: `unreal-specialist`, `ue-gas-specialist`, `ue-blueprint-specialist`, `ue-replication-specialist`, `ue-umg-specialist`
-- Unity: `unity-specialist`, `unity-dots-specialist`, `unity-shader-specialist`, `unity-addressables-specialist`, `unity-ui-specialist`
-- Godot: `godot-specialist`, `godot-gdscript-specialist`, `godot-csharp-specialist`, `godot-shader-specialist`, `godot-gdextension-specialist`
+**UE5 Engine Specialists:**
+`unreal-specialist`, `ue-gas-specialist`, `ue-blueprint-specialist`, `ue-replication-specialist`, `ue-umg-specialist`
+
+| Specialist | Subsystem | When to Use |
+|------------|-----------|-------------|
+| `unreal-specialist` | General UE5 | Blueprint vs C++, UE subsystems, optimization overview |
+| `ue-gas-specialist` | Gameplay Ability System | Abilities, effects, attribute sets, tags, prediction |
+| `ue-blueprint-specialist` | Blueprint Architecture | BP/C++ boundary, graph standards, BP optimization |
+| `ue-replication-specialist` | Networking/Replication | Property replication, RPCs, prediction, bandwidth |
+| `ue-umg-specialist` | UMG/CommonUI | Widget hierarchy, data binding, CommonUI input, UI perf |
 
 ### Tier 0 — Ruflo Meta-Agents: Process coordination
 `planner` (task decomposition), `coder` (implementation), `researcher` (investigation), `reviewer` (quality), `tester` (verification)

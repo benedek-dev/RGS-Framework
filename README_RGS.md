@@ -11,7 +11,7 @@ and 73-skill workflow system) into a single operational environment.
 RGS gives you a complete AI-powered game studio that can:
 
 - **Orchestrate multi-agent swarms** across game development domains using Ruflo's hierarchical topology
-- **Deploy 49 specialized agents** covering every discipline from creative direction to engine-specific programming
+- **Deploy 44 specialized agents** covering every discipline from creative direction to UE5-specific programming
 - **Execute 73 workflow skills** covering the full game dev lifecycle from concept through release
 - **Route tasks automatically** — the master orchestrator dispatches work to the right specialist at the right model tier
 - **Coordinate in real-time** via SendMessage pipeline between named agents
@@ -29,7 +29,7 @@ RGS/
 │   │   ├── creative-director.md ← CCGS leadership tier
 │   │   ├── technical-director.md
 │   │   ├── producer.md
-│   │   ├── [45 more specialists] ← Full CCGS agent hierarchy
+│   │   ├── [40 more specialists] ← UE5-focused agent hierarchy
 │   │   └── core/                ← Ruflo meta-agents
 │   │       ├── planner.md       ← Task decomposition
 │   │       ├── coder.md         ← Implementation
@@ -61,31 +61,30 @@ RGS/
 │       ├── swarm-advanced/      ← Advanced coordination patterns
 │       └── agent-swarm/         ← Swarm primitives
 └── docs/
-    └── engine-reference/
-        └── godot/VERSION.md     ← Pinned engine version + knowledge gap warnings
+    └── engine-reference/        ← UE5 API reference (add version-pinned docs here)
 ```
 
 ---
 
 ## Agent System
 
-### 54 Total Agents
+### 44 Total Agents (UE5-exclusive)
 
 | Layer | Count | Purpose |
 |-------|-------|---------|
 | RGS Orchestrator | 1 | Master routing and swarm coordination |
 | Ruflo Meta-Agents | 5 | Process coordination (planner/coder/researcher/reviewer/tester) |
-| CCGS Leadership | 3 | Strategic decisions (creative-director, technical-director, producer) |
-| CCGS Dept. Leads | 8 | Domain authority (game-designer, lead-programmer, art-director, ...) |
-| CCGS Specialists | 19 | Implementation (gameplay-prog, engine-prog, sound-designer, ...) |
-| Engine Specialists | 18 | Per-engine experts (UE/Unity/Godot + sub-specialists) |
+| Leadership | 3 | Strategic decisions (creative-director, technical-director, producer) |
+| Dept. Leads | 8 | Domain authority (game-designer, lead-programmer, art-director, ...) |
+| General Specialists | 22 | Implementation (gameplay-prog, engine-prog, sound-designer, ...) |
+| UE5 Engine Specialists | 5 | unreal-specialist + ue-gas, ue-blueprint, ue-replication, ue-umg |
 
 ### Model Tier Routing
 
 | Model | Agents | Use Case |
 |-------|--------|----------|
 | **Opus** | rgs-orchestrator, creative-director, technical-director, producer | Leadership, synthesis, high-stakes |
-| **Sonnet** | All 45 department leads + specialists + meta-agents | Implementation, design, analysis |
+| **Sonnet** | All 39 department leads + UE5 specialists + meta-agents | Implementation, design, analysis |
 | **Haiku** | qa-tester, devops-engineer, accessibility-specialist, community-manager | Status checks, formatting, simple lookups |
 
 ---

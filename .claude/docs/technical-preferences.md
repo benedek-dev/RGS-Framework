@@ -5,53 +5,56 @@
 
 ## Engine & Language
 
-- **Engine**: [TO BE CONFIGURED — run /setup-engine]
-- **Language**: [TO BE CONFIGURED]
-- **Rendering**: [TO BE CONFIGURED]
-- **Physics**: [TO BE CONFIGURED]
+- **Engine**: Unreal Engine 5 (exclusive)
+- **Languages**: C++ (primary), Blueprint (gameplay prototyping)
+- **Rendering**: Lumen (global illumination), Nanite (virtualized geometry)
+- **Physics**: Chaos Physics
 
 ## Input & Platform
 
 <!-- Written by /setup-engine. Read by /ux-design, /ux-review, /test-setup, /team-ui, and /dev-story -->
-<!-- to scope interaction specs, test helpers, and implementation to the correct input methods. -->
 
-- **Target Platforms**: [TO BE CONFIGURED — e.g., PC, Console, Mobile, Web]
-- **Input Methods**: [TO BE CONFIGURED — e.g., Keyboard/Mouse, Gamepad, Touch, Mixed]
-- **Primary Input**: [TO BE CONFIGURED — the dominant input for this game]
+- **Target Platforms**: [TO BE CONFIGURED — e.g., PC, Console]
+- **Input Methods**: [TO BE CONFIGURED — e.g., Keyboard/Mouse, Gamepad]
+- **Primary Input**: [TO BE CONFIGURED]
 - **Gamepad Support**: [TO BE CONFIGURED — Full / Partial / None]
-- **Touch Support**: [TO BE CONFIGURED — Full / Partial / None]
-- **Platform Notes**: [TO BE CONFIGURED — any platform-specific UX constraints]
+- **Touch Support**: None (UE5 not suited for mobile)
+- **Platform Notes**: [TO BE CONFIGURED — e.g., must support d-pad navigation for console]
 
-## Naming Conventions
+## Naming Conventions (UE5 C++ Standard)
 
-- **Classes**: [TO BE CONFIGURED]
-- **Variables**: [TO BE CONFIGURED]
-- **Signals/Events**: [TO BE CONFIGURED]
-- **Files**: [TO BE CONFIGURED]
-- **Scenes/Prefabs**: [TO BE CONFIGURED]
-- **Constants**: [TO BE CONFIGURED]
+- **Classes**: Prefixed PascalCase — `A` Actor, `U` UObject, `F` struct, `E` enum, `I` interface
+- **Variables**: PascalCase (e.g., `MoveSpeed`, `JumpVelocity`)
+- **Booleans**: `b` prefix (e.g., `bIsAlive`, `bCanJump`)
+- **Functions**: PascalCase (e.g., `TakeDamage()`, `OnHealthChanged()`)
+- **Files**: Match class without prefix (e.g., `PlayerController.h` / `PlayerController.cpp`)
+- **Blueprints**: `BP_` prefix (e.g., `BP_PlayerCharacter`, `BP_EnemyBase`)
+- **Materials**: `M_` prefix; instances `MI_` (e.g., `M_Rock_01`, `MI_Rock_01`)
+- **Textures**: `T_` prefix (e.g., `T_Rock_Albedo_01`)
+- **Constants**: PascalCase or UPPER_SNAKE_CASE
 
 ## Performance Budgets
 
-- **Target Framerate**: [TO BE CONFIGURED]
-- **Frame Budget**: [TO BE CONFIGURED]
-- **Draw Calls**: [TO BE CONFIGURED]
+- **Target Framerate**: [TO BE CONFIGURED — e.g., 60fps / 30fps console]
+- **Frame Budget**: [TO BE CONFIGURED — e.g., 16.6ms at 60fps]
+- **Draw Calls**: [TO BE CONFIGURED — UE5 Nanite reduces geometry draw calls significantly]
 - **Memory Ceiling**: [TO BE CONFIGURED]
 
 ## Testing
 
-- **Framework**: [TO BE CONFIGURED]
+- **Framework**: [TO BE CONFIGURED — UE5 Automation System / Gauntlet]
 - **Minimum Coverage**: [TO BE CONFIGURED]
 - **Required Tests**: Balance formulas, gameplay systems, networking (if applicable)
 
 ## Forbidden Patterns
 
-<!-- Add patterns that should never appear in this project's codebase -->
-- [None configured yet — add as architectural decisions are made]
+- Do not use Blueprint for performance-critical gameplay logic — use C++
+- Do not hardcode gameplay values — use Data Assets or Data Tables
+- Do not call `GetWorld()` without null-checking the result
+- [Add more as architectural decisions are made]
 
 ## Allowed Libraries / Addons
 
-<!-- Add approved third-party dependencies here -->
 - [None configured yet — add as dependencies are approved]
 
 ## Architecture Decisions Log
@@ -61,27 +64,25 @@
 
 ## Engine Specialists
 
-<!-- Written by /setup-engine when engine is configured. -->
 <!-- Read by /code-review, /architecture-decision, /architecture-review, and team skills -->
-<!-- to know which specialist to spawn for engine-specific validation. -->
 
-- **Primary**: [TO BE CONFIGURED — run /setup-engine]
-- **Language/Code Specialist**: [TO BE CONFIGURED]
-- **Shader Specialist**: [TO BE CONFIGURED]
-- **UI Specialist**: [TO BE CONFIGURED]
-- **Additional Specialists**: [TO BE CONFIGURED]
-- **Routing Notes**: [TO BE CONFIGURED]
+- **Primary**: `unreal-specialist`
+- **Language/Code Specialist**: `ue-blueprint-specialist` (Blueprint graphs) / `unreal-specialist` (C++)
+- **Shader Specialist**: `unreal-specialist` (Materials, HLSL, custom shaders — no dedicated shader agent needed)
+- **UI Specialist**: `ue-umg-specialist` (UMG widgets, CommonUI, input routing, widget styling)
+- **Additional Specialists**:
+  - `ue-gas-specialist` — Gameplay Ability System, attributes, gameplay effects, tags
+  - `ue-replication-specialist` — property replication, RPCs, netcode, prediction
+- **Routing Notes**: Invoke primary for C++ architecture and broad engine decisions. Blueprint specialist for Blueprint graph architecture and BP/C++ boundary. GAS specialist for all ability and attribute code. Replication specialist for any multiplayer systems. UMG specialist for all UI implementation.
 
 ### File Extension Routing
 
-<!-- Skills use this table to select the right specialist per file type. -->
-<!-- If a row says [TO BE CONFIGURED], fall back to Primary for that file type. -->
-
 | File Extension / Type | Specialist to Spawn |
 |-----------------------|---------------------|
-| Game code (primary language) | [TO BE CONFIGURED] |
-| Shader / material files | [TO BE CONFIGURED] |
-| UI / screen files | [TO BE CONFIGURED] |
-| Scene / prefab / level files | [TO BE CONFIGURED] |
-| Native extension / plugin files | [TO BE CONFIGURED] |
-| General architecture review | Primary |
+| C++ source (.cpp, .h files) | `unreal-specialist` |
+| Shader / material (.usf, .ush, Material assets) | `unreal-specialist` |
+| UI / widgets (.umg, UMG Widget Blueprints) | `ue-umg-specialist` |
+| Level / map files (.umap, .uasset levels) | `unreal-specialist` |
+| Plugin files (.uplugin, plugin modules) | `unreal-specialist` |
+| Blueprint graphs (.uasset BP classes) | `ue-blueprint-specialist` |
+| General architecture review | `unreal-specialist` |
