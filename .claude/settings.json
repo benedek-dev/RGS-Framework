@@ -99,6 +99,7 @@
       "Bash(ls *)"
     ]
   },
+  "statusLine": "bash .claude/hooks/telemetry.sh 2>/dev/null",
   "hooks": {
     "PreToolUse": [
       {
@@ -118,6 +119,15 @@
           {
             "type": "command",
             "command": "bash .claude/hooks/validate-skill-change.sh 2>/dev/null || true"
+          }
+        ]
+      },
+      {
+        "matcher": ".*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash .claude/hooks/telemetry.sh 2>/dev/null || true"
           }
         ]
       }
