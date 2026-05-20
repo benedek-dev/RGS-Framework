@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git clone *)",
+      "Read(//c//**)",
+      "Bash(rm -rf \"/c/Users/Bene/Desktop/Desarollo/Claude Code/RSG_Framework/rgs_source_temp\")"
+    ]
+  }
+}

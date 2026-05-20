@@ -1,0 +1,141 @@
+{
+  "model_tiers": {
+    "opus": {
+      "model": "claude-opus-4-6",
+      "agents": [
+        "rgs-orchestrator",
+        "creative-director",
+        "technical-director",
+        "producer"
+      ],
+      "skills": [
+        "review-all-gdds",
+        "architecture-review",
+        "gate-check"
+      ],
+      "description": "Leadership agents and high-stakes synthesis tasks"
+    },
+    "sonnet": {
+      "model": "claude-sonnet-4-6",
+      "agents": [
+        "game-designer",
+        "lead-programmer",
+        "art-director",
+        "audio-director",
+        "narrative-director",
+        "qa-lead",
+        "release-manager",
+        "localization-lead",
+        "systems-designer",
+        "level-designer",
+        "economy-designer",
+        "gameplay-programmer",
+        "engine-programmer",
+        "ai-programmer",
+        "network-programmer",
+        "tools-programmer",
+        "ui-programmer",
+        "technical-artist",
+        "sound-designer",
+        "writer",
+        "world-builder",
+        "performance-analyst",
+        "analytics-engineer",
+        "ux-designer",
+        "prototyper",
+        "security-engineer",
+        "live-ops-designer",
+        "unreal-specialist",
+        "unity-specialist",
+        "godot-specialist",
+        "ue-gas-specialist",
+        "ue-blueprint-specialist",
+        "ue-replication-specialist",
+        "ue-umg-specialist",
+        "unity-dots-specialist",
+        "unity-shader-specialist",
+        "unity-addressables-specialist",
+        "unity-ui-specialist",
+        "godot-gdscript-specialist",
+        "godot-csharp-specialist",
+        "godot-shader-specialist",
+        "godot-gdextension-specialist",
+        "planner",
+        "coder",
+        "researcher",
+        "reviewer",
+        "tester"
+      ],
+      "description": "Department leads, specialists, and Ruflo meta-agents"
+    },
+    "haiku": {
+      "model": "claude-haiku-4-5-20251001",
+      "agents": [
+        "qa-tester",
+        "devops-engineer",
+        "accessibility-specialist",
+        "community-manager"
+      ],
+      "skills": [
+        "help",
+        "sprint-status",
+        "story-readiness",
+        "scope-check",
+        "project-stage-detect",
+        "changelog",
+        "patch-notes",
+        "onboard"
+      ],
+      "description": "Read-only status checks, formatting, and simple lookups"
+    }
+  },
+  "swarm": {
+    "default_topology": "hierarchical",
+    "max_agents": 8,
+    "strategy": "specialized",
+    "consensus": "raft",
+    "anti_drift": true,
+    "checkpoint_interval": 10
+  },
+  "permissions": {
+    "allow": [
+      "Bash(git *)",
+      "Bash(find *)",
+      "Bash(ls *)"
+    ]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash .claude/hooks/validate-commit.sh 2>/dev/null || true"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash .claude/hooks/validate-skill-change.sh 2>/dev/null || true"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash .claude/hooks/log-agent-stop.sh 2>/dev/null || true"
+          }
+        ]
+      }
+    ]
+  }
+}
